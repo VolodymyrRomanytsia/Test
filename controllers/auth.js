@@ -34,7 +34,7 @@ module.exports.login = async function(req, res){
 }
 
 module.exports.register = async function(req, res){
-    const candidate = await User.findOne({email: req.body.email})
+    const candidate = await User.findOne({username: req.body.username})
 
     if(candidate) {
         res.status(409).json({
