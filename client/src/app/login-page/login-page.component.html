@@ -1,0 +1,62 @@
+<div class="container row">
+    <div class="col s12 m10 offset-m1 l8 offset-l2 top">
+      <div class="card">
+        <div class="card-content"> 
+          <form
+          [formGroup]='form'
+          (ngSubmit)="onSubmit()"
+          >  
+            <div class="input-field">
+              <input 
+                formControlName="username"
+                type="text" 
+                id="username">
+              <label for="username">Username</label>
+              <span 
+                class="helper-text red-text"
+                *ngIf="form.get('username').invalid && form.get('username').touched"
+                >
+                <span *ngIf="form.get('username').errors['required']">Username is required</span>
+              </span>
+            </div>
+            <div class="input-field">
+              <input 
+                [ngClass]="{'invalid': form.get('password').invalid && form.get('password').touched}"
+                formControlName="password"
+                type="password" 
+                id="password">
+              <label for="password">Password</label>
+              <span 
+                class="helper-text red-text"
+                *ngIf="form.get('password').invalid && form.get('password').touched"
+                >
+                <span *ngIf="form.get('password').errors['required']">Password is required</span>
+                <span *ngIf="form.get('password').errors['minlength']">
+                    Password must be at least {{form.get('password').errors['minlength']['requiredLength']}} characters long.
+                    Now {{form.get('password').errors['minlength']['actualLength']}}
+                </span>
+                <span *ngIf="form.get('password').errors['pattern'] && !form.get('password').errors['minlength']">
+                    Your password must contain only numbers and letters, at least one uppercase, one lowercase, and one number
+                </span>
+              </span>
+            </div>
+            <div class="card-action center">
+              <button  
+                type="submit"
+                class="btn-large purple waves-effect waves-light"
+                [disabled]="form.invalid || form.disabled"
+                >
+                Log In
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="center">
+        <span> 
+          Don't have account yet? 
+          <a routerLink (click)="registration()">Sign up now!</a> 
+        </span>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,72 @@
+<div class="container row">
+  <div class="col s12 m10 offset-m1 l8 offset-l2 top">
+    <div class="card">
+      <div class="card-content"> 
+        <span class="card-title">Create an account</span>
+        <form
+        [formGroup]='form'
+        (ngSubmit)="onSubmit()"
+        >  
+          <div class="input-field">
+            <input 
+              formControlName="username"
+              type="text" 
+              id="username">
+            <label for="username">Username</label>
+            <span 
+              class="helper-text red-text"
+              *ngIf="form.get('username').invalid && form.get('username').touched"
+              >
+              <span *ngIf="form.get('username').errors['required']">Username is required</span>
+            </span>
+          </div>
+          <div class="input-field">
+            <input 
+              [ngClass]="{'invalid': form.get('password').invalid && form.get('password').touched}"
+              formControlName="password"
+              type="password" 
+              id="password">
+            <label for="password">Password</label>
+            <span 
+              class="helper-text red-text"
+              *ngIf="form.get('password').invalid && form.get('password').touched"
+              >
+              <span *ngIf="form.get('password').errors['required']">Password is required</span>
+              <span *ngIf="form.get('password').errors['minlength']">
+                  Password must be at least {{form.get('password').errors['minlength']['requiredLength']}} characters long.
+                  Now {{form.get('password').errors['minlength']['actualLength']}}
+              </span>
+              <span *ngIf="form.get('password').errors['pattern'] && !form.get('password').errors['minlength']">
+                  Your password must contain only numbers and letters, at least one uppercase, one lowercase, and one number
+              </span>
+            </span>
+          </div>
+          <div class="input-field">
+            <input 
+              [ngClass]="{'invalid': form.get('confirmPassword').invalid && form.get('confirmPassword').touched}"
+              formControlName="confirmPassword"
+              type="password" 
+              id="confirmPassword">
+            <label for="confirmPassword">Confirm password</label>
+            <span 
+              class="helper-text red-text"
+              *ngIf="form.get('confirmPassword').invalid && form.get('confirmPassword').touched"
+              >
+              <span *ngIf="form.get('confirmPassword').errors['required']">Confirm password is required</span>
+              <span *ngIf="form.get('confirmPassword').errors.MatchPassword">Password mismatch</span>
+            </span>
+          </div>
+          <div class="card-action center">
+            <button  
+              type="submit"
+              class="btn-large btn purple waves-effect"
+              [disabled]="form.invalid || form.disabled"
+              >
+              Sign Up
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
