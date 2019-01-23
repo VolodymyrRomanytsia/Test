@@ -15,12 +15,7 @@ export function productReduser(state = initialState, action: ProductAction) {
             return{
                 ...state,
                 products: [...state.products.filter(c => c._id !== action.payload._id)]
-            }    
-        case PRODUCT_ACTION.UPDATE_PRODUCT:
-            return{
-                ...state,
-                products: [...state.products]
-            }
+            } 
         default:
             return state;
     }

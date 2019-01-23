@@ -4,7 +4,6 @@ import { OrderProduct } from '../interfaces';
 export namespace PRODUCT_ACTION {
     export const ADD_PRODUCT = 'ADD_PRODUCT'
     export const DELETE_PRODUCT = 'DELETE_PRODUCT'
-    export const UPDATE_PRODUCT = 'UPDATE_PRODUCT'
 }
 
 
@@ -20,11 +19,5 @@ export class DeleteProduct implements Action {
     constructor(public payload: OrderProduct) {}
 }
 
-export class UpdateProduct implements Action {
-    readonly type = PRODUCT_ACTION.UPDATE_PRODUCT
 
-    constructor(public payload: OrderProduct) {}
-}
-
-
-export type ProductAction = AddProduct | DeleteProduct | UpdateProduct
+export type ProductAction = AddProduct | DeleteProduct

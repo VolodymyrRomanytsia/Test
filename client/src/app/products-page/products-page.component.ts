@@ -6,6 +6,8 @@ import { MaterialService, MaterialInstance } from '../core/classes/material.serv
 import { AddProduct, DeleteProduct, UpdateProduct } from '../core/redux/product.action';
 import { Store } from '@ngrx/store';
 import { AppState } from '../core/redux/app.state';
+import { AuthServise } from '../core/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-products-page',
@@ -22,7 +24,9 @@ export class ProductsPageComponent implements OnInit, OnDestroy, AfterViewInit {
   price = 0
 
   constructor(private productService: ProductService,
-              private store: Store<AppState>) { }
+              private store: Store<AppState>,
+              private auth: AuthServise,
+              private router: Router) { }
 
   ngOnInit() {
     this.productsPage$ = this.productService.fetch()
@@ -106,6 +110,11 @@ export class ProductsPageComponent implements OnInit, OnDestroy, AfterViewInit {
   clear() {
     this.productsState = []
     this.price = 0
+  }
+
+  exit() {
+    this.auth.logout()
+    this.router.navigate(['/login'])
   }
 
 

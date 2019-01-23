@@ -25,11 +25,11 @@ export class AppComponent implements OnInit {
 
     this.route.queryParams.subscribe( (params: Params) => {
       if (params['registered']) {
-        MaterialService.toast('Ви можете увійти в систему використовуючи свій логін і пароль')
+        MaterialService.toast('You can log in using your login and password')
       } else if (params['accsesDenied']) {
-        MaterialService.toast('Спочатку авторизуйтеся на сайті')
+        MaterialService.toast('Log in to the site first')
       } else if (params['sesionFailed']) {
-        MaterialService.toast('Будь ласка, увійдіть ще раз')
+        MaterialService.toast('Please, log in again')
       }
     })
   }

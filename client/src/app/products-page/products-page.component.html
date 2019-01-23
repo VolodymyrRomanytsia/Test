@@ -1,10 +1,10 @@
 <nav>
     <div class="nav-wrapper">
       <div class="container">
-        <a href="#" class="brand-logo">TreoLabsTest</a>
+        <a routerLink="products" class="brand-logo hide-on-small-only">TreoLabsTest</a>
         <ul class="right">
           <li><a (click)="open()"><i class="material-icons white-text">shopping_cart</i></a></li>
-          <li><a href="">Exit</a></li>
+          <li><a (click)="exit()">Exit</a></li>
         </ul>
       </div>
     </div>
@@ -22,28 +22,27 @@
 </div>
   
 <div class="container">
-  <div class="row"
-  
-  >
-    <div class="col s12 l4"
-    *ngFor="let product of productsPage$ | async"
-    >
-        <div class="card medium">
-            <div class="card-image waves-effect waves-block waves-light">
-              <img class="activator" src="{{product.image}}">
-            </div>
-            <div class="card-content">
-              <span (click)="addRevised(product)" class="card-title activator grey-text text-darken-4">{{product.title}}<i class="material-icons right">more_vert</i></span>
-              <span>{{product.price | currency:USD}}</span>
-            </div>
-            <div class="card-action center">
-              <button (click)="addToCart(product)" class="waves-effect waves-light btn"><i class="material-icons right">shopping_cart</i>Add to cart</button>
-            </div>
-            <div class="card-reveal">
-              <span class="card-title grey-text text-darken-4">{{product.title}}<i class="material-icons right">close</i></span>
-              <p>{{product.description}}</p>
-            </div>
+  <div class="row">
+    <div class="col s12 m6 l4" *ngFor="let product of productsPage$ | async">
+      <div class="card medium">
+        <div class="card-image waves-effect waves-block waves-light">
+          <img class="activator" src="{{product.image}}">
+        </div>
+        <div class="card-content">
+          <span (click)="addRevised(product)" class="card-title activator grey-text text-darken-4">{{product.title}}<i class="material-icons right">more_vert</i></span>
+          <span>{{product.price | currency:USD}}</span>
+        </div>
+        <div class="card-action center">
+          <button (click)="addToCart(product)" class="waves-effect waves-light btn"><i class="material-icons right">shopping_cart</i>Add to cart</button>
+        </div>
+        <div class="card-reveal">
+          <span class="card-title grey-text text-darken-4">{{product.title}}<i class="material-icons right">close</i></span>
+          <p>{{product.description}}</p>
+          <div class="card-action center">
+            <button (click)="addToCart(product)" class="waves-effect waves-light btn"><i class="material-icons right">shopping_cart</i>Add to cart</button>
           </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -94,7 +93,7 @@
       </table>
       <ng-template #empty>
         <div class="center top">Your Shopping Cart is empty 
-          <a (click)="cancel()">Start shopping now!</a>
+          <a routerlink (click)="cancel()">Start shopping now!</a>
         </div>
       </ng-template>
       <div class="order-summary">
