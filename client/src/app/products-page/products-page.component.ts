@@ -3,7 +3,7 @@ import { Observable, Subscription } from 'rxjs';
 import { Product, Products, OrderProduct } from '../core/interfaces';
 import { ProductService } from '../core/services/product.service';
 import { MaterialService, MaterialInstance } from '../core/classes/material.service';
-import { AddProduct, DeleteProduct, UpdateProduct } from '../core/redux/product.action';
+import { AddProduct, DeleteProduct } from '../core/redux/product.action';
 import { Store } from '@ngrx/store';
 import { AppState } from '../core/redux/app.state';
 import { AuthServise } from '../core/services/auth.service';
