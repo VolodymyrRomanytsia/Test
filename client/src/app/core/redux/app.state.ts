@@ -2,7 +2,8 @@ import { OrderProduct, Product } from '../interfaces';
 
 export interface AppState {  
     productsOrder: {
-        products: OrderProduct[],
+        products: Product[],
+        orderproducts: OrderProduct[],
         viewproducts: Product[]  
     }
 

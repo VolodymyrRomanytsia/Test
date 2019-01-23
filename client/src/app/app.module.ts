@@ -11,6 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductsPageComponent } from './products-page/products-page.component';
 import { StoreModule } from '@ngrx/store';
 import { productReduser } from './core/redux/product.reduser';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { productReduser } from './core/redux/product.reduser';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    StoreModule.forRoot({productsOrder: productReduser})
+    StoreModule.forRoot({productsOrder: productReduser}),
+    NgxPaginationModule
   ],
   providers: [
     {

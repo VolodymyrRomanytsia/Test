@@ -19,10 +19,11 @@ export class ProductsPageComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild('modal') modalRef: ElementRef
   modal: MaterialInstance
   oSub: Subscription
-  productsPage$: Observable<Products>
+  productsPage: Product[]
   productsState: OrderProduct[]
   viewedProducts: Product[]
   price: number = 0
+  p: number = 1
 
   constructor(private productService: ProductService,
               private store: Store<AppState>,
@@ -30,9 +31,13 @@ export class ProductsPageComponent implements OnInit, OnDestroy, AfterViewInit {
               private router: Router) { }
 
   ngOnInit() {
-    this.productsPage$ = this.productService.fetch()
+    this.productService.fetch() 
     this.store.select('productsOrder').subscribe(({products}) => {
-      this.productsState =  products
+      this.productsPage = products
+    })
+
+    this.store.select('productsOrder').subscribe(({orderproducts}) => {
+      this.productsState =  orderproducts
     })
     this.store.select('productsOrder').subscribe(({viewproducts}) => {
       this.viewedProducts = viewproducts

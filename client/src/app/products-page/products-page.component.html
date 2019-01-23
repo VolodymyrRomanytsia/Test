@@ -10,6 +10,8 @@
     </div>
   </nav>
 
+  
+
 <div class="container height">
     <div class="input-field col s12">
       <select multiple>
@@ -23,7 +25,7 @@
   
 <div class="container">
   <div class="row">
-    <div class="col s12 m6 l4" *ngFor="let product of productsPage$ | async">
+    <div class="col s12 m6 l4" *ngFor="let product of productsPage | paginate: { itemsPerPage: 3, currentPage: p }">
       <div class="card medium">
         <div (click)="addRevised(product)" class="card-image waves-effect waves-block waves-light">
           <img class="activator" src="{{product.image}}">
@@ -48,15 +50,7 @@
 </div>
 
 <div class="container center">
-  <ul class="pagination">
-      <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
-      <li class="active"><a href="#!">1</a></li>
-      <li class="waves-effect"><a href="#!">2</a></li>
-      <li class="waves-effect"><a href="#!">3</a></li>
-      <li class="waves-effect"><a href="#!">4</a></li>
-      <li class="waves-effect"><a href="#!">5</a></li>
-      <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
-  </ul>
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
 </div>
 
 <div #modal class="modal modal-fixed-footer">

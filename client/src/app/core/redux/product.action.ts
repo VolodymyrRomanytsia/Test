@@ -2,11 +2,17 @@ import { Action } from "@ngrx/store";
 import { OrderProduct, Product } from '../interfaces';
 
 export namespace PRODUCT_ACTION {
+    export const LOAD_PRODUCTS = 'LOAD_PRODUCTS'
     export const ADD_PRODUCT = 'ADD_PRODUCT'
     export const DELETE_PRODUCT = 'DELETE_PRODUCT'
     export const ADD_VIEWED_PRODUCT = 'ADD_VIEWED_PRODUCT'
 }
 
+export class LoadProducts implements Action {
+    readonly type = PRODUCT_ACTION.LOAD_PRODUCTS
+
+    constructor(public payload: Product[]) {}
+}
 
 export class AddProduct implements Action {
     readonly type = PRODUCT_ACTION.ADD_PRODUCT
@@ -27,4 +33,4 @@ export class AddViewedProduct implements Action {
 }
 
 
-export type ProductAction = AddProduct | DeleteProduct | AddViewedProduct
+export type ProductAction = LoadProducts | AddProduct | DeleteProduct | AddViewedProduct
