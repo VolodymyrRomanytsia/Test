@@ -1,9 +1,10 @@
 import { Action } from "@ngrx/store";
-import { OrderProduct } from '../interfaces';
+import { OrderProduct, Product } from '../interfaces';
 
 export namespace PRODUCT_ACTION {
     export const ADD_PRODUCT = 'ADD_PRODUCT'
     export const DELETE_PRODUCT = 'DELETE_PRODUCT'
+    export const ADD_VIEWED_PRODUCT = 'ADD_VIEWED_PRODUCT'
 }
 
 
@@ -19,5 +20,11 @@ export class DeleteProduct implements Action {
     constructor(public payload: OrderProduct) {}
 }
 
+export class AddViewedProduct implements Action {
+    readonly type = PRODUCT_ACTION.ADD_VIEWED_PRODUCT
 
-export type ProductAction = AddProduct | DeleteProduct
+    constructor(public payload: Product) {}
+}
+
+
+export type ProductAction = AddProduct | DeleteProduct | AddViewedProduct

@@ -1,7 +1,8 @@
 import { PRODUCT_ACTION, ProductAction } from './product.action';
 
 const initialState = {
-    products: []
+    products: [],
+    viewproducts: []
 }
 
 export function productReduser(state = initialState, action: ProductAction) {
@@ -16,6 +17,11 @@ export function productReduser(state = initialState, action: ProductAction) {
                 ...state,
                 products: [...state.products.filter(c => c._id !== action.payload._id)]
             } 
+        case PRODUCT_ACTION.ADD_VIEWED_PRODUCT:
+            return{
+                ...state,
+                viewproducts: [...state.viewproducts, action.payload]
+            }
         default:
             return state;
     }

@@ -28,8 +28,6 @@ export class AppComponent implements OnInit {
         MaterialService.toast('You can log in using your login and password')
       } else if (params['accsesDenied']) {
         MaterialService.toast('Log in to the site first')
-      } else if (params['sesionFailed']) {
-        MaterialService.toast('Please, log in again')
       }
     })
   }
