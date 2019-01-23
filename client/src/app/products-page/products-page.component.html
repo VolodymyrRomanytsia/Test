@@ -1,0 +1,114 @@
+<nav>
+    <div class="nav-wrapper">
+      <div class="container">
+        <a href="#" class="brand-logo">TreoLabsTest</a>
+        <ul class="right">
+          <li><a (click)="open()"><i class="material-icons white-text">shopping_cart</i></a></li>
+          <li><a href="">Exit</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+<div class="container height">
+    <div class="input-field col s12">
+      <select multiple>
+        <option value="" disabled selected>Choose your option</option>
+        <option value="1">Option 1</option>
+        <option value="2">Option 2</option>
+      </select>
+      <label>Materialize Multiple Select</label>
+    </div>
+</div>
+  
+<div class="container">
+  <div class="row"
+  
+  >
+    <div class="col s12 l4"
+    *ngFor="let product of productsPage$ | async"
+    >
+        <div class="card medium">
+            <div class="card-image waves-effect waves-block waves-light">
+              <img class="activator" src="{{product.image}}">
+            </div>
+            <div class="card-content">
+              <span (click)="addRevised(product)" class="card-title activator grey-text text-darken-4">{{product.title}}<i class="material-icons right">more_vert</i></span>
+              <span>{{product.price | currency:USD}}</span>
+            </div>
+            <div class="card-action center">
+              <button (click)="addToCart(product)" class="waves-effect waves-light btn"><i class="material-icons right">shopping_cart</i>Add to cart</button>
+            </div>
+            <div class="card-reveal">
+              <span class="card-title grey-text text-darken-4">{{product.title}}<i class="material-icons right">close</i></span>
+              <p>{{product.description}}</p>
+            </div>
+          </div>
+    </div>
+  </div>
+</div>
+
+<div class="container center">
+  <ul class="pagination">
+      <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+      <li class="active"><a href="#!">1</a></li>
+      <li class="waves-effect"><a href="#!">2</a></li>
+      <li class="waves-effect"><a href="#!">3</a></li>
+      <li class="waves-effect"><a href="#!">4</a></li>
+      <li class="waves-effect"><a href="#!">5</a></li>
+      <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+  </ul>
+</div>
+
+<div #modal class="modal modal-fixed-footer">
+    <div class="modal-content">
+      <h4 class="mb1">Your order</h4>
+      <table class="highlight" *ngIf="productsState.length !== 0; else empty">
+        <thead>
+        <tr>
+          <th>Title</th>
+          <th>Quantity</th>
+          <th>Price</th>
+          <th></th>
+        </tr>
+        </thead>
+  
+        <tbody>
+        <tr *ngFor="let item of productsState">
+          <td>{{item.title}}</td>
+          <td>
+            <button
+            class="waves-effect waves-black btn-flat"
+            (click)="removeOne(item)"
+            >-</button> 
+            {{item.quantity}}
+            <button
+            class="waves-effect waves-black btn-flat"
+            (click)="addOne(item)"
+            >+</button> 
+        </td>
+          <td>{{item.price | currency:USD}}</td>
+          <td><i class="material-icons pointer" (click)="removeProduct(item)">delete</i></td>
+        </tr>
+        </tbody>
+      </table>
+      <ng-template #empty>
+        <div class="center top">Your Shopping Cart is empty 
+          <a (click)="cancel()">Start shopping now!</a>
+        </div>
+      </ng-template>
+      <div class="order-summary">
+        <p>Total Price <strong>{{price | currency:USD}}</strong></p>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button
+        class="modal-action waves-effect waves-black btn-flat"
+        (click)="cancel()"
+      >Cancel</button>
+      <button
+        class="modal-action btn waves-effect"
+        (click)="submit()"
+      >Buy all</button>
+    </div>
+  </div>

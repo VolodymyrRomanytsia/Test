@@ -1,0 +1,11 @@
+.height {
+    height: 80px;
+}
+
+.top {
+    margin-top: 10vh
+}
+.order-summary {
+    position: absolute;
+    bottom: 0;
+}

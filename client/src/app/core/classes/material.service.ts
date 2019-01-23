@@ -21,6 +21,12 @@ export class MaterialService {
     static parallax(ref: ElementRef): MaterialInstance {
       return M.Parallax.init(ref.nativeElement)
     }  
+
+    static select(ref: ElementRef): MaterialInstance {
+        return M.FormSelect.init(ref.nativeElement)
+    } 
+
+
     
     // static initializeFloatingButton(ref: ElementRef) {
     //     M.FloatingActionButton.init(ref.nativeElement)
@@ -30,9 +36,9 @@ export class MaterialService {
     //     M.updateTextFields()
     // }
     
-    // static initModal(ref: ElementRef): MaterialInstance {
-    //     return M.Modal.init(ref.nativeElement)
-    // }
+    static initModal(ref: ElementRef): MaterialInstance {
+        return M.Modal.init(ref.nativeElement)
+    }
     
     // static initTooltip(ref: ElementRef): MaterialInstance {
     //     return M.Tooltip.init(ref.nativeElement)

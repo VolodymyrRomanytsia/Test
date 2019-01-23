@@ -8,19 +8,24 @@ import { RegistrationPageComponent } from './registration-page/registration-page
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { TokenInterceptor } from './core/classes/token.interceptor';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ProductsPageComponent } from './products-page/products-page.component';
+import { StoreModule } from '@ngrx/store';
+import { productReduser } from './core/redux/product.reduser';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginPageComponent,
-    RegistrationPageComponent
+    RegistrationPageComponent,
+    ProductsPageComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    StoreModule.forRoot({productsOrder: productReduser})
   ],
   providers: [
     {

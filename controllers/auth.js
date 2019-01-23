@@ -23,12 +23,12 @@ module.exports.login = async function(req, res){
 
         }else{
             res.status(401).json({
-                message: 'Пароль не правильний. Спробуйте ще раз'
+                message: 'The password is incorrect. Try again'
             })
         }
     } else {
         res.status(404).json({
-            message: 'Користувача з таким email не знайдено'
+            message: 'The user with such email was not found'
         })
     }
 }
@@ -38,7 +38,7 @@ module.exports.register = async function(req, res){
 
     if(candidate) {
         res.status(409).json({
-            message: 'Користувач з таким email вже існує'
+            message: 'A user with this email already exists'
         })
     } else {
         const salt = bcrypt.genSaltSync(12)
