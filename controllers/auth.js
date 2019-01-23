@@ -28,7 +28,7 @@ module.exports.login = async function(req, res){
         }
     } else {
         res.status(404).json({
-            message: 'The user with such email was not found'
+            message: 'The user with such username was not found'
         })
     }
 }
@@ -38,7 +38,7 @@ module.exports.register = async function(req, res){
 
     if(candidate) {
         res.status(409).json({
-            message: 'A user with this email already exists'
+            message: 'A user with this username already exists'
         })
     } else {
         const salt = bcrypt.genSaltSync(12)
