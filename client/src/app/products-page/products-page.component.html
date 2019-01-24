@@ -12,15 +12,31 @@
 
   
 
-<div class="container height">
-    <div class="input-field col s12">
-      <select multiple>
-        <option value="" disabled selected>Choose your option</option>
-        <option value="1">Option 1</option>
-        <option value="2">Option 2</option>
-      </select>
-      <label>Materialize Multiple Select</label>
+<div class="container">
+  <div class="row margin">
+    <div class="row col s6 l4 m5">
+      <form [formGroup]='form'>
+        <div class="input-field col s4">
+          <input placeholder="$ Min" type="number" formControlName="min" class="validate">
+          <label for="first_name">Price</label>
+        </div>
+        <div class="input-field col s4">
+          <input placeholder="$ Max" type="number" formControlName="max" class="validate">
+        </div>
+        <div class="col s4 margin">
+          <button class="waves-effect waves-light btn" (click)="minMaxFilter()"minMaxFilter>Go</button>
+        </div>
+      </form>
     </div>
+    <div class="input-field col s6 l3 offset-l5 m4 offset-m3">
+      <select #select>
+        <option value="" disabled selected>Featured</option>
+        <option value="1">Price: Low to High</option>
+        <option value="2">Price: High to Low</option>
+      </select>
+      <label>Sort by</label>
+    </div>
+  </div>
 </div>
   
 <div class="container">
@@ -110,9 +126,9 @@
 
 
   <div class="container">
-    <h4><i class="material-icons">remove_red_eye</i> Recent viewed items</h4>
+    <h4><i class="material-icons orange-text">remove_red_eye</i>You viewed</h4>
       <div class="row">
-        <div class="col s12 m6 l3" *ngFor="let vproduct of viewedProducts">
+        <div class="col s12 m4 l3" *ngFor="let vproduct of viewedProducts">
           <div class="card medium">
             <div class="card-image waves-effect waves-block waves-light">
               <img class="activator" src="{{vproduct.image}}">

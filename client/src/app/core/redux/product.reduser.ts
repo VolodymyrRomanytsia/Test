@@ -28,6 +28,11 @@ export function productReduser(state = initialState, action: ProductAction) {
                 ...state,
                 viewproducts: [...state.viewproducts, action.payload]
             }
+        case PRODUCT_ACTION.FILTER_MINMAX_PRODUCT:
+            return{
+                ...state,
+                products: [...state.products.filter(c =>  c.price < action.payload.max && c.price > action.payload.min)]
+            }
         default:
             return state;
     }

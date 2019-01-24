@@ -6,6 +6,7 @@ export interface MaterialInstance {
     open?(): void
     close?(): void
     destroy?(): void
+    getSelectedValues?(): void
 }
 
   
@@ -18,41 +19,11 @@ export class MaterialService {
         M.toast({html: message})
     }
 
-    static parallax(ref: ElementRef): MaterialInstance {
-      return M.Parallax.init(ref.nativeElement)
-    }  
-
     static select(ref: ElementRef): MaterialInstance {
         return M.FormSelect.init(ref.nativeElement)
     } 
 
-
-    
-    // static initializeFloatingButton(ref: ElementRef) {
-    //     M.FloatingActionButton.init(ref.nativeElement)
-    // }
-
-    // static updateTextInputs() {
-    //     M.updateTextFields()
-    // }
-    
     static initModal(ref: ElementRef): MaterialInstance {
         return M.Modal.init(ref.nativeElement)
     }
-    
-    // static initTooltip(ref: ElementRef): MaterialInstance {
-    //     return M.Tooltip.init(ref.nativeElement)
-    // }
-    
-    static initDatepicker(ref: ElementRef, onClose: () => void): MaterialDatepicker {
-        return M.Datepicker.init(ref.nativeElement, {
-          format: 'dd.mm.yyyy',
-          showClearBtn: true,
-          onClose
-        })
-    }
-    
-    // static initTapTarget(ref: ElementRef): MaterialInstance {
-    //     return M.TapTarget.init(ref.nativeElement)
-    // }
 }

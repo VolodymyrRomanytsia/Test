@@ -3,11 +3,12 @@ import { Observable, Subscription } from 'rxjs';
 import { Product, Products, OrderProduct } from '../core/interfaces';
 import { ProductService } from '../core/services/product.service';
 import { MaterialService, MaterialInstance } from '../core/classes/material.service';
-import { AddProduct, DeleteProduct, AddViewedProduct } from '../core/redux/product.action';
+import { AddProduct, DeleteProduct, AddViewedProduct, FilterMinMaxProduct } from '../core/redux/product.action';
 import { Store } from '@ngrx/store';
 import { AppState } from '../core/redux/app.state';
 import { AuthServise } from '../core/services/auth.service';
 import { Router } from '@angular/router';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-products-page',
@@ -17,13 +18,16 @@ import { Router } from '@angular/router';
 export class ProductsPageComponent implements OnInit, OnDestroy, AfterViewInit {
 
   @ViewChild('modal') modalRef: ElementRef
-  modal: MaterialInstance
+  @ViewChild('select') selectRef: ElementRef
+  instance: MaterialInstance
+  inst: MaterialInstance
   oSub: Subscription
   productsPage: Product[]
   productsState: OrderProduct[]
   viewedProducts: Product[]
   price: number = 0
   p: number = 1
+  form: FormGroup
 
   constructor(private productService: ProductService,
               private store: Store<AppState>,
@@ -42,26 +46,32 @@ export class ProductsPageComponent implements OnInit, OnDestroy, AfterViewInit {
     this.store.select('productsOrder').subscribe(({viewproducts}) => {
       this.viewedProducts = viewproducts
     })
+
+    this.form = new FormGroup({
+      min: new FormControl(null),
+      max: new FormControl(null)
+    })
+  
   }
 
   ngOnDestroy() {
-    this.modal.destroy()
+    this.instance.destroy()
     if (this.oSub) {
       this.oSub.unsubscribe()
     }
   }
 
   ngAfterViewInit() {
-    this.modal = MaterialService.initModal(this.modalRef)
+    this.instance = MaterialService.initModal(this.modalRef)
+    this.inst = MaterialService.select(this.selectRef)
   }
 
   open() {
-    this.modal.open()
-    console.log(this.viewedProducts)
+    this.instance.open()
   }
 
   cancel() {
-    this.modal.close()
+    this.instance.close()
   }
 
   addToCart(product: Product) {
@@ -124,6 +134,12 @@ export class ProductsPageComponent implements OnInit, OnDestroy, AfterViewInit {
 
   addRevised(product: Product) {
     this.store.dispatch(new AddViewedProduct(product))
+    
+  }
+
+  minMaxFilter() {
+    this.store.dispatch(new FilterMinMaxProduct(this.form.value))
+    console.log(this.form.value)
   }
 
 
