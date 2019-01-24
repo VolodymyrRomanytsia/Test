@@ -3,7 +3,7 @@ import { Subscription } from 'rxjs';
 import { Product, OrderProduct } from '../core/interfaces';
 import { ProductService } from '../core/services/product.service';
 import { MaterialService, MaterialInstance } from '../core/classes/material.service';
-import { AddProduct, DeleteProduct, AddViewedProduct, FilterMinMaxProduct, SortMinMaxProduct, SortMaxMinProduct, DeleteViewedProduct } from '../core/redux/product.action';
+import { AddProduct, DeleteProduct, AddViewedProduct, FilterMinMaxProduct, SortMinMaxProduct, SortMaxMinProduct, DeleteViewedProduct, DeleteOrderProducts } from '../core/redux/product.action';
 import { Store, select } from '@ngrx/store';
 import { AppState } from '../core/redux/app.state';
 import { AuthServise } from '../core/services/auth.service';
@@ -171,7 +171,8 @@ export class ProductsPageComponent implements OnInit, OnDestroy, AfterViewInit {
 
   submit() {
     console.log(this.productsState)
-    this.productsState = []
+    this.store.dispatch(new DeleteOrderProducts())
+     
   }
 
 }

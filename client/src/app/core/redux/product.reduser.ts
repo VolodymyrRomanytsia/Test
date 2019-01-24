@@ -52,6 +52,11 @@ export function productReduser(state = initialState, action: ProductAction) {
                 ...state,
                 viewproducts: [...state.viewproducts.filter(c => c._id !== action.payload._id)]
             } 
+        case PRODUCT_ACTION.DELETE_ORDER_PRODUCTS:
+            return{
+                ...state,
+                orderproducts: []
+            }
         default:
             return state;
     }
