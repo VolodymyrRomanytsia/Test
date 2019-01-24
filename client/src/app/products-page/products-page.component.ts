@@ -81,9 +81,12 @@ export class ProductsPageComponent implements OnInit, OnDestroy, AfterViewInit {
   addToCart(product: Product) {
       let orderProduct = Object.assign({}, {
       title: product.title,
+      description: product.description,
+      image: product.image,
       price: product.price,
       quantity: 1,
-      _id: product._id
+      _id: product._id,
+      userId: this.auth.getId()
     })
 
     const candidate = this.productsState.find(p => p._id === orderProduct._id)
@@ -164,6 +167,11 @@ export class ProductsPageComponent implements OnInit, OnDestroy, AfterViewInit {
   sortMaxMin() {
     this.store.dispatch(new SortMaxMinProduct())
     this.p = 1
+  }
+
+  submit() {
+    console.log(this.productsState)
+    this.productsState = []
   }
 
 }
