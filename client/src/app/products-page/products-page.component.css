@@ -10,3 +10,9 @@
 .marginBottom {
     margin-bottom: 0px;
 }
+
+.wigth {
+    display: block;
+    width: 100%;
+    margin: 0px;
+}

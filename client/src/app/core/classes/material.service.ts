@@ -19,11 +19,12 @@ export class MaterialService {
         M.toast({html: message})
     }
 
-    static select(ref: ElementRef): MaterialInstance {
-        return M.FormSelect.init(ref.nativeElement)
-    } 
-
     static initModal(ref: ElementRef): MaterialInstance {
         return M.Modal.init(ref.nativeElement)
     }
+
+    static initDropdown(ref: ElementRef): MaterialInstance {
+        return M.Dropdown.init(ref.nativeElement)
+    }
+
 }

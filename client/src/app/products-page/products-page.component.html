@@ -1,16 +1,14 @@
 <nav>
-    <div class="nav-wrapper">
-      <div class="container">
-        <a routerLink="products" class="brand-logo hide-on-small-only">TreoLabsTest</a>
-        <ul class="right">
-          <li><a (click)="open()"><i class="material-icons white-text">shopping_cart</i></a></li>
-          <li><a (click)="exit()">Exit</a></li>
-        </ul>
-      </div>
+  <div class="nav-wrapper">
+    <div class="container">
+      <a routerLink="products" class="brand-logo hide-on-small-only">TreoLabsTest</a>
+      <ul class="right">
+        <li><a (click)="open()"><i class="material-icons white-text">shopping_cart</i></a></li>
+        <li><a (click)="exit()">Exit</a></li>
+      </ul>
     </div>
-  </nav>
-
-  
+  </div>
+</nav>
 
 <div class="container">
   <div class="row margin">
@@ -24,27 +22,28 @@
           <input placeholder="$ Max" type="number" formControlName="max" class="validate">
         </div>
         <div class="col s4 margin">
-          <button class="waves-effect waves-light btn" (click)="minMaxFilter()">Go</button>
+          <button class="waves-effect waves-light btn wigth" (click)="minMaxFilter()">Go</button>
         </div>
       </form>
     </div>
-    <div class="input-field col s12 l3 offset-l5 m4 offset-m3 marginBottom">
-      <select #select>
-        <option value="" disabled selected>Featured</option>
-        <option value="1">Price: Low to High</option>
-        <option value="2">Price: High to Low</option>
-      </select>
-      <label>Sort by</label>
+    <div class="col s12 l4 offset-l4 m5 offset-m2 wigth">
+      <label >Sort By</label>
+      <button #dropdown class="dropdown-trigger btn-flat waves-effect waves-teal wigth" data-target="dropdown1">Featured<i class="material-icons right">arrow_drop_down</i></button>
+      <ul id="dropdown1" class="dropdown-content">
+        <li><a (click)="sortMinMax()">Price: Low to High</a></li>
+        <li class="divider" tabindex="-1"></li>
+        <li><a (click)="sortMaxMin()">Price: High to Low</a></li>
+      </ul>
     </div>
   </div>
   <div class="s12 " [ngClass]="{'hide': !filter}">
-      <button class="btn-flat" (click)="canselFilter()">Any Price</button>
-    </div>
+    <button class="btn-flat" (click)="canselFilter()">Any Price</button>
+  </div>
 </div>
-  
+
 <div class="container">
   <div class="row">
-    <div class="col s12 m6 l4" *ngFor="let product of productsPage | paginate: { itemsPerPage: 3, currentPage: p }">
+    <div class="col s12 m6 l4" *ngFor="let product of productsPage | paginate: { itemsPerPage: 6, currentPage: p }">
       <div class="card medium">
         <div (click)="addRevised(product)" class="card-image waves-effect waves-block waves-light">
           <img class="activator" src="{{product.image}}">

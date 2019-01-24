@@ -1,14 +1,14 @@
-import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
-import { Observable, Subscription } from 'rxjs';
-import { Product, Products, OrderProduct } from '../core/interfaces';
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, OnDestroy, SimpleChanges } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { Product, OrderProduct } from '../core/interfaces';
 import { ProductService } from '../core/services/product.service';
 import { MaterialService, MaterialInstance } from '../core/classes/material.service';
-import { AddProduct, DeleteProduct, AddViewedProduct, FilterMinMaxProduct } from '../core/redux/product.action';
-import { Store } from '@ngrx/store';
+import { AddProduct, DeleteProduct, AddViewedProduct, FilterMinMaxProduct, SortMinMaxProduct, SortMaxMinProduct } from '../core/redux/product.action';
+import { Store, select } from '@ngrx/store';
 import { AppState } from '../core/redux/app.state';
 import { AuthServise } from '../core/services/auth.service';
 import { Router } from '@angular/router';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, NgModel } from '@angular/forms';
 
 @Component({
   selector: 'app-products-page',
@@ -19,8 +19,10 @@ export class ProductsPageComponent implements OnInit, OnDestroy, AfterViewInit {
 
   @ViewChild('modal') modalRef: ElementRef
   @ViewChild('select') selectRef: ElementRef
+  @ViewChild('dropdown') dropdownRef: ElementRef
+
   instance: MaterialInstance
-  inst: MaterialInstance
+  dropdown: MaterialInstance
   oSub: Subscription
   productsPage: Product[]
   productsState: OrderProduct[]
@@ -29,6 +31,7 @@ export class ProductsPageComponent implements OnInit, OnDestroy, AfterViewInit {
   p: number = 1
   form: FormGroup
   filter = false
+  selectSort: FormControl
 
   constructor(private productService: ProductService,
               private store: Store<AppState>,
@@ -52,8 +55,8 @@ export class ProductsPageComponent implements OnInit, OnDestroy, AfterViewInit {
       min: new FormControl(null),
       max: new FormControl(null)
     })
-  
   }
+
 
   ngOnDestroy() {
     this.instance.destroy()
@@ -64,7 +67,7 @@ export class ProductsPageComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngAfterViewInit() {
     this.instance = MaterialService.initModal(this.modalRef)
-    this.inst = MaterialService.select(this.selectRef)
+    this.dropdown = MaterialService.initDropdown(this.dropdownRef)
   }
 
   open() {
@@ -152,5 +155,14 @@ export class ProductsPageComponent implements OnInit, OnDestroy, AfterViewInit {
     this.filter = false
   }
 
+  sortMinMax() {
+    this.store.dispatch(new SortMinMaxProduct())
+    this.p = 1
+  }
+
+  sortMaxMin() {
+    this.store.dispatch(new SortMaxMinProduct())
+    this.p = 1
+  }
 
 }
