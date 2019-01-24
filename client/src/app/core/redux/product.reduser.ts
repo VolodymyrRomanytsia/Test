@@ -26,7 +26,7 @@ export function productReduser(state = initialState, action: ProductAction) {
         case PRODUCT_ACTION.ADD_VIEWED_PRODUCT:
             return{
                 ...state,
-                viewproducts: [...state.viewproducts, action.payload]
+                viewproducts: [action.payload, ...state.viewproducts]
             }
         case PRODUCT_ACTION.FILTER_MINMAX_PRODUCT:
             return{
@@ -47,6 +47,11 @@ export function productReduser(state = initialState, action: ProductAction) {
                     return b.price - a.price; 
                   }) ]
             }
+        case PRODUCT_ACTION.DELETE_VIEWED_PRODUCT:
+            return{
+                ...state,
+                viewproducts: [...state.viewproducts.filter(c => c._id !== action.payload._id)]
+            } 
         default:
             return state;
     }
