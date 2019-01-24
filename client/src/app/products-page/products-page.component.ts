@@ -28,6 +28,7 @@ export class ProductsPageComponent implements OnInit, OnDestroy, AfterViewInit {
   price: number = 0
   p: number = 1
   form: FormGroup
+  filter = false
 
   constructor(private productService: ProductService,
               private store: Store<AppState>,
@@ -138,8 +139,17 @@ export class ProductsPageComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   minMaxFilter() {
+    if (this.form.value.max === null) {
+      this.form.value.max = 999999
+    }
     this.store.dispatch(new FilterMinMaxProduct(this.form.value))
-    console.log(this.form.value)
+    this.filter = true
+  }
+
+  canselFilter() {
+    this.form.patchValue({min: null, max: null})
+    this.productService.fetch() 
+    this.filter = false
   }
 
 

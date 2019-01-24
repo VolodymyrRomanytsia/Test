@@ -14,21 +14,21 @@
 
 <div class="container">
   <div class="row margin">
-    <div class="row col s6 l4 m5">
+    <div class="row col s6 l4 m5 marginBottom">
       <form [formGroup]='form'>
-        <div class="input-field col s4">
+        <div class="input-field col s4 marginBottom">
           <input placeholder="$ Min" type="number" formControlName="min" class="validate">
-          <label for="first_name">Price</label>
+          <label for="min">Price</label>
         </div>
-        <div class="input-field col s4">
+        <div class="input-field col s4 marginBottom">
           <input placeholder="$ Max" type="number" formControlName="max" class="validate">
         </div>
         <div class="col s4 margin">
-          <button class="waves-effect waves-light btn" (click)="minMaxFilter()"minMaxFilter>Go</button>
+          <button class="waves-effect waves-light btn" (click)="minMaxFilter()">Go</button>
         </div>
       </form>
     </div>
-    <div class="input-field col s6 l3 offset-l5 m4 offset-m3">
+    <div class="input-field col s6 l3 offset-l5 m4 offset-m3 marginBottom">
       <select #select>
         <option value="" disabled selected>Featured</option>
         <option value="1">Price: Low to High</option>
@@ -37,6 +37,9 @@
       <label>Sort by</label>
     </div>
   </div>
+  <div class="s12 " [ngClass]="{'hide': !filter}">
+      <button class="btn-flat" (click)="canselFilter()">Any Price</button>
+    </div>
 </div>
   
 <div class="container">
