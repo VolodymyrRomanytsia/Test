@@ -33,6 +33,20 @@ export function productReduser(state = initialState, action: ProductAction) {
                 ...state,
                 products: [...state.products.filter(c =>  c.price < action.payload.max && c.price > action.payload.min)]
             }
+        case PRODUCT_ACTION.SORT_MINMAX_PRODUCT:
+            return{
+                ...state,
+                products: [...state.products.sort(function(a, b) {
+                    return a.price - b.price;
+                  }) ]
+            }
+        case PRODUCT_ACTION.SORT_MAXMIN_PRODUCT:
+            return{
+                ...state,
+                products: [...state.products.sort(function(a, b) {
+                    return b.price - a.price; 
+                  }) ]
+            }
         default:
             return state;
     }

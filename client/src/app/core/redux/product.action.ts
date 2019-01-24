@@ -7,6 +7,9 @@ export namespace PRODUCT_ACTION {
     export const DELETE_PRODUCT = 'DELETE_PRODUCT'
     export const ADD_VIEWED_PRODUCT = 'ADD_VIEWED_PRODUCT'
     export const FILTER_MINMAX_PRODUCT = 'FILTER_MINMAX_PRODUCT'
+    export const SORT_MINMAX_PRODUCT = 'SORT_MINMAX_PRODUCT'
+    export const SORT_MAXMIN_PRODUCT = 'SORT_MAXMIN_PRODUCT'
+    
 }
 
 export class LoadProducts implements Action {
@@ -39,5 +42,13 @@ export class FilterMinMaxProduct implements Action {
     constructor(public payload: {min: number, max: number}) {}
 }
 
+export class SortMinMaxProduct implements Action {
+    readonly type = PRODUCT_ACTION.SORT_MINMAX_PRODUCT
+}
 
-export type ProductAction = LoadProducts | AddProduct | DeleteProduct | AddViewedProduct | FilterMinMaxProduct
+export class SortMaxMinProduct implements Action {
+    readonly type = PRODUCT_ACTION.SORT_MAXMIN_PRODUCT
+}
+
+
+export type ProductAction = LoadProducts | AddProduct | DeleteProduct | AddViewedProduct | FilterMinMaxProduct | SortMinMaxProduct | SortMaxMinProduct
