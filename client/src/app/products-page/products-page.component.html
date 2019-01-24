@@ -12,16 +12,16 @@
 
 <div class="container">
   <div class="row margin">
-    <div class="row col s12 l4 m5 marginBottom">
+    <div class="row col s12 l4 m5 marginnull">
+      <label>Price</label>
       <form [formGroup]='form'>
-        <div class="input-field col s4 marginBottom">
+        <div class="input-field col s4 marginnull">
           <input placeholder="$ Min" type="number" formControlName="min" class="validate">
-          <label for="min">Price</label>
         </div>
-        <div class="input-field col s4 marginBottom">
+        <div class="input-field col s4 marginnull">
           <input placeholder="$ Max" type="number" formControlName="max" class="validate">
         </div>
-        <div class="col s4 margin">
+        <div class="col s4">
           <button class="waves-effect waves-light btn wigth" (click)="minMaxFilter()">Go</button>
         </div>
       </form>
