@@ -1,14 +1,14 @@
-import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, OnDestroy, SimpleChanges } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Product, OrderProduct } from '../core/interfaces';
 import { ProductService } from '../core/services/product.service';
 import { MaterialService, MaterialInstance } from '../core/classes/material.service';
 import { AddProduct, DeleteProduct, AddViewedProduct, FilterMinMaxProduct, SortMinMaxProduct, SortMaxMinProduct, DeleteViewedProduct, DeleteOrderProducts } from '../core/redux/product.action';
-import { Store, select } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import { AppState } from '../core/redux/app.state';
 import { AuthServise } from '../core/services/auth.service';
 import { Router } from '@angular/router';
-import { FormGroup, FormControl, NgModel } from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-products-page',

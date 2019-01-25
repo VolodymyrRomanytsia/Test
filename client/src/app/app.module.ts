@@ -12,6 +12,8 @@ import { ProductsPageComponent } from './products-page/products-page.component';
 import { StoreModule } from '@ngrx/store';
 import { productReduser } from './core/redux/product.reduser';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     ReactiveFormsModule,
     HttpClientModule,
     StoreModule.forRoot({productsOrder: productReduser}),
-    NgxPaginationModule
+    NgxPaginationModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
     {
