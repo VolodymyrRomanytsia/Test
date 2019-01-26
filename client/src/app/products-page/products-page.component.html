@@ -101,7 +101,11 @@
             </div>
         </td>
           <td>{{item.price | currency:USD}}</td>
-          <td><i class="material-icons pointer" (click)="removeProduct(item)">delete</i></td>
+          <td><button
+            class="btn-flat"
+            (click)="removeProduct(item)"
+            ><i class="material-icons pointer" >delete</i>
+          </button></td>
         </tr>
         </tbody>
       </table>
