@@ -19,3 +19,18 @@ module.exports.getById = async function(req, res) {
   }
 }
 
+module.exports.create = async function(req, res) {
+    const product = new Product({
+      title: req.body.title,
+      description: req.body.description,
+      image: req.body.image,
+      price: req.body.price   
+  })
+  try{
+      await product.save()
+      res.status(201).json(product)
+  }catch(e){
+      errorHandler(res, e)
+  }
+}
+
